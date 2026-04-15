@@ -1,12 +1,11 @@
+﻿use parking_lot::RwLock;
 use std::path::{Path, PathBuf};
 use std::sync::Arc;
-use parking_lot::RwLock;
 use tracing::{debug, warn};
 
 use crate::core::config::Config;
 use crate::Result;
 
-/// Thread-safe sandbox with interior mutability for dry-run mode.
 #[derive(Clone)]
 pub struct Sandbox {
     config: Arc<Config>,
@@ -46,7 +45,6 @@ impl Sandbox {
 
         if write && self.config.safety.require_confirmation && !*self.dry_run.read() {
             warn!("Destructive action requires confirmation (simulated)");
-            // In production, you'd prompt the user here.
         }
 
         Ok(())

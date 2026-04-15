@@ -1,5 +1,5 @@
+﻿use crate::llm::provider::LlmProvider;
 use crate::Result;
-use crate::llm::provider::LlmProvider;
 use std::process::Command;
 
 pub struct GitIntelligence {

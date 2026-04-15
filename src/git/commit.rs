@@ -1,4 +1,4 @@
-use crate::Result;
+﻿use crate::Result;
 use std::process::Command;
 
 pub fn commit(message: &str) -> Result<()> {

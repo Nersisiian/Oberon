@@ -1,4 +1,4 @@
-use std::sync::Arc;
+﻿use std::sync::Arc;
 use tracing::{debug, info};
 
 use crate::memory::short_term::ShortTermMemory;
@@ -31,10 +31,7 @@ impl ExecutionEngine {
             memory.add_observation(&result.output);
             Ok(result.output)
         } else {
-            Err(crate::OberonError::tool(
-                &step.tool,
-                &result.output,
-            ))
+            Err(crate::OberonError::tool(&step.tool, &result.output))
         }
     }
 

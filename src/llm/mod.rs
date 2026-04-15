@@ -1,3 +1,3 @@
-pub mod provider;
-pub mod ollama;
+﻿pub mod ollama;
 pub mod prompt;
+pub mod provider;

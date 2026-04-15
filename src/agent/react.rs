@@ -1,4 +1,4 @@
-use crate::executor::engine::ExecutionEngine;
+﻿use crate::executor::engine::ExecutionEngine;
 use crate::llm::provider::LlmProvider;
 use crate::memory::short_term::ShortTermMemory;
 use crate::Result;
@@ -49,5 +49,8 @@ impl ReactLoop {
 
 pub enum ActionResponse {
     FinalAnswer(String),
-    Action { tool: String, input: serde_json::Value },
+    Action {
+        tool: String,
+        input: serde_json::Value,
+    },
 }

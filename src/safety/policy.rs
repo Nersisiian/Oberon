@@ -1,4 +1,4 @@
-use serde::{Deserialize, Serialize};
+﻿use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct SafetyPolicy {
@@ -10,15 +10,20 @@ pub struct SafetyPolicy {
 impl Default for SafetyPolicy {
     fn default() -> Self {
         Self {
-            blocked_commands: vec![
-                "rm -rf /".to_string(),
-                "dd if=/dev/zero".to_string(),
-            ],
+            blocked_commands: vec!["rm -rf /".to_string(), "dd if=/dev/zero".to_string()],
             max_file_size_mb: 100,
             allowed_file_extensions: vec![
-                "rs".into(), "toml".into(), "md".into(), "json".into(),
-                "yaml".into(), "yml".into(), "py".into(), "js".into(),
-                "ts".into(), "html".into(), "css".into(),
+                "rs".into(),
+                "toml".into(),
+                "md".into(),
+                "json".into(),
+                "yaml".into(),
+                "yml".into(),
+                "py".into(),
+                "js".into(),
+                "ts".into(),
+                "html".into(),
+                "css".into(),
             ],
         }
     }

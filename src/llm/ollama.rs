@@ -1,9 +1,8 @@
-use async_stream::stream;
+﻿use async_stream::stream;
 use async_trait::async_trait;
 use futures::StreamExt;
 use serde_json::{json, Value};
 use std::pin::Pin;
-use std::sync::Arc;
 use std::time::Duration;
 use tracing::{debug, warn};
 
@@ -88,11 +87,11 @@ impl LlmProvider for OllamaProvider {
     }
 
     async fn generate_structured(&self, prompt: &str) -> Result<String> {
-        let system = "You must respond with valid JSON only. No explanations, no markdown formatting.";
+        let system =
+            "You must respond with valid JSON only. No explanations, no markdown formatting.";
         let full_prompt = format!("{}\nRespond with pure JSON:", prompt);
         let response = self.call_ollama(&full_prompt, system).await?;
 
-        // Clean up response
         let json_str = response
             .trim()
             .trim_start_matches("```json")

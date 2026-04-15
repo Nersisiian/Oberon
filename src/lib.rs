@@ -1,4 +1,4 @@
-pub mod agent;
+﻿pub mod agent;
 pub mod cli;
 pub mod context;
 pub mod core;
@@ -11,5 +11,5 @@ pub mod safety;
 pub mod tools;
 
 pub use context::Context;
-pub use core::error::{OberonError, Result};
 pub use core::config::Config;
+pub use core::error::{OberonError, Result};

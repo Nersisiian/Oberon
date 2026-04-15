@@ -1,5 +1,5 @@
+﻿use serde::{Deserialize, Serialize};
 use std::sync::Arc;
-use serde::{Deserialize, Serialize};
 use tracing::debug;
 
 use crate::context::Context;
@@ -72,8 +72,9 @@ impl Planner {
         if response.trim() == "{}" {
             return Ok(None);
         }
-        let step: Step = serde_json::from_str(&response)
-            .map_err(|e| crate::OberonError::Planner(format!("Invalid alternative step JSON: {}", e)))?;
+        let step: Step = serde_json::from_str(&response).map_err(|e| {
+            crate::OberonError::Planner(format!("Invalid alternative step JSON: {}", e))
+        })?;
         Ok(Some(step))
     }
 }

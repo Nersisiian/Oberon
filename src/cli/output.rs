@@ -1,4 +1,4 @@
-use colored::*;
+﻿use colored::*;
 use std::fmt::Display;
 
 pub fn success<T: Display>(msg: T) {

@@ -1,4 +1,4 @@
-use std::sync::Arc;
+﻿use std::sync::Arc;
 use tracing::{debug, info, warn};
 
 use crate::context::Context;
@@ -47,7 +47,10 @@ impl Agent {
                     tool = %step.tool,
                     "[DRY RUN] Would execute destructive operation"
                 );
-                final_result = format!("[DRY RUN] Would execute: {} - {}", step.tool, step.description);
+                final_result = format!(
+                    "[DRY RUN] Would execute: {} - {}",
+                    step.tool, step.description
+                );
                 continue;
             }
 
@@ -84,9 +87,6 @@ impl Agent {
     }
 
     fn is_destructive_tool(&self, tool_name: &str) -> bool {
-        matches!(
-            tool_name,
-            "write_file" | "git_commit" | "refactor"
-        )
+        matches!(tool_name, "write_file" | "git_commit" | "refactor")
     }
 }

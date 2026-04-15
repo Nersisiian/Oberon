@@ -1,7 +1,7 @@
-use super::base::{Tool, ToolResult};
+﻿use super::base::{Tool, ToolResult};
+use crate::Result;
 use async_trait::async_trait;
 use serde_json::{json, Value};
-use crate::Result;
 use std::process::Command;
 
 pub struct GitDiffTool;
@@ -23,13 +23,11 @@ impl Tool for GitDiffTool {
     }
 
     fn validate_input(&self, _input: &Value) -> Result<()> {
-        Ok(()) // No required input
+        Ok(())
     }
 
     async fn execute(&self, _input: Value) -> Result<ToolResult> {
-        let output = Command::new("git")
-            .args(["diff", "--no-color"])
-            .output()?;
+        let output = Command::new("git").args(["diff", "--no-color"]).output()?;
 
         let diff = String::from_utf8_lossy(&output.stdout).to_string();
 

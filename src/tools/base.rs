@@ -1,6 +1,6 @@
+﻿use crate::Result;
 use async_trait::async_trait;
 use serde::{Deserialize, Serialize};
-use crate::Result;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ToolResult {
@@ -16,7 +16,6 @@ pub trait Tool: Send + Sync {
     fn validate_input(&self, input: &serde_json::Value) -> Result<()>;
     async fn execute(&self, input: serde_json::Value) -> Result<ToolResult>;
 
-    /// Whether this tool modifies state (for safety checks)
     fn is_destructive(&self) -> bool {
         false
     }

@@ -1,7 +1,7 @@
-use super::base::{Tool, ToolResult};
+﻿use super::base::{Tool, ToolResult};
+use crate::Result;
 use async_trait::async_trait;
 use serde_json::{json, Value};
-use crate::Result;
 use tokio::fs;
 
 pub struct ListDirTool;
@@ -24,9 +24,10 @@ impl Tool for ListDirTool {
 
     fn validate_input(&self, input: &Value) -> Result<()> {
         if !input.is_object() || input.get("path").is_none() {
-            return Err(crate::OberonError::Tool(
-                "Input must have 'path' field".into(),
-            ));
+            return Err(crate::OberonError::Tool {
+                tool: self.name().to_string(),
+                message: "Input must have 'path' field".into(),
+            });
         }
         Ok(())
     }
@@ -38,7 +39,11 @@ impl Tool for ListDirTool {
 
         while let Some(entry) = dir.next_entry().await? {
             let name = entry.file_name().to_string_lossy().to_string();
-            let file_type = if entry.file_type().await?.is_dir() { "dir" } else { "file" };
+            let file_type = if entry.file_type().await?.is_dir() {
+                "dir"
+            } else {
+                "file"
+            };
             entries.push(format!("{} ({})", name, file_type));
         }
 

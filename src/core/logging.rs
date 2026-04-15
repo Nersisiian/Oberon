@@ -1,10 +1,10 @@
+﻿use crate::core::config::Config;
 use tracing_subscriber::{fmt, prelude::*, EnvFilter};
-use crate::core::config::Config;
 
 pub fn init() {
     let config = Config::load().unwrap_or_default();
-    let filter = EnvFilter::try_from_default_env()
-        .unwrap_or_else(|_| EnvFilter::new(&config.logging.level));
+    let filter =
+        EnvFilter::try_from_default_env().unwrap_or_else(|_| EnvFilter::new(&config.logging.level));
 
     let subscriber = fmt::layer()
         .with_target(true)

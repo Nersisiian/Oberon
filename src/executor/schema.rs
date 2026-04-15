@@ -1,4 +1,4 @@
-use serde::{Deserialize, Serialize};
+﻿use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct LlmAction {
@@ -10,7 +10,10 @@ pub struct LlmAction {
 #[serde(tag = "type")]
 pub enum ActionType {
     #[serde(rename = "tool")]
-    Tool { name: String, input: serde_json::Value },
+    Tool {
+        name: String,
+        input: serde_json::Value,
+    },
     #[serde(rename = "final_answer")]
     FinalAnswer { output: String },
 }

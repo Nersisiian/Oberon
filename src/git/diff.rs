@@ -1,4 +1,4 @@
-use crate::Result;
+﻿use crate::Result;
 use std::process::Command;
 
 pub fn get_diff(staged: bool) -> Result<String> {

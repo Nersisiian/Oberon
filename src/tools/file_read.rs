@@ -1,7 +1,7 @@
-use super::base::{Tool, ToolResult};
+﻿use super::base::{Tool, ToolResult};
+use crate::Result;
 use async_trait::async_trait;
 use serde_json::{json, Value};
-use crate::Result;
 use tokio::fs;
 
 pub struct FileReadTool;
@@ -24,9 +24,10 @@ impl Tool for FileReadTool {
 
     fn validate_input(&self, input: &Value) -> Result<()> {
         if !input.is_object() || input.get("path").is_none() {
-            return Err(crate::OberonError::Tool(
-                "Input must have 'path' field".into(),
-            ));
+            return Err(crate::OberonError::Tool {
+                tool: self.name().to_string(),
+                message: "Input must have 'path' field".into(),
+            });
         }
         Ok(())
     }

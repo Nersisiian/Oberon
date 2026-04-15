@@ -1,8 +1,8 @@
-use super::base::{Tool, ToolResult};
+﻿use super::base::{Tool, ToolResult};
+use crate::llm::ollama::OllamaProvider;
+use crate::Result;
 use async_trait::async_trait;
 use serde_json::{json, Value};
-use crate::Result;
-use crate::llm::ollama::OllamaProvider;
 use std::sync::Arc;
 use tracing::debug;
 
@@ -29,10 +29,7 @@ impl Tool for RefactorTool {
     }
 
     fn validate_input(&self, input: &Value) -> Result<()> {
-        if !input.is_object()
-            || input.get("path").is_none()
-            || input.get("instruction").is_none()
-        {
+        if !input.is_object() || input.get("path").is_none() || input.get("instruction").is_none() {
             return Err(crate::OberonError::tool(
                 self.name(),
                 "Input must have 'path' and 'instruction' fields",

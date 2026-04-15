@@ -1,4 +1,4 @@
-use thiserror::Error;
+﻿use thiserror::Error;
 
 #[derive(Error, Debug)]
 pub enum OberonError {
@@ -35,7 +35,6 @@ pub enum OberonError {
 
 pub type Result<T> = std::result::Result<T, OberonError>;
 
-// Convenience constructors
 impl OberonError {
     pub fn tool(tool: impl Into<String>, message: impl Into<String>) -> Self {
         Self::Tool {

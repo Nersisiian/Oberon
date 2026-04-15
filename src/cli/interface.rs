@@ -1,7 +1,7 @@
-use std::sync::Arc;
-use clap::{Parser, Subcommand};
+﻿use clap::{Parser, Subcommand};
 use colored::*;
 use std::io::Write;
+use std::sync::Arc;
 use tracing::info;
 
 use crate::agent::Agent;
@@ -38,9 +38,7 @@ pub enum Commands {
     /// Show configuration
     Config,
     /// Replay a previous session
-    Replay {
-        session_id: String,
-    },
+    Replay { session_id: String },
 }
 
 impl Cli {
