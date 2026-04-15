@@ -1,8 +1,6 @@
 ﻿use async_stream::stream;
 use async_trait::async_trait;
-use futures::StreamExt;
 use serde_json::{json, Value};
-use std::pin::Pin;
 use std::time::Duration;
 use tracing::{debug, warn};
 
@@ -121,9 +119,9 @@ impl LlmProvider for OllamaProvider {
             .await
             .map_err(|e| crate::OberonError::llm(e.to_string()))?;
 
-        let stream = response.bytes_stream();
+        let byte_stream = response.bytes_stream();
         let stream = stream! {
-            for await chunk in stream {
+            for await chunk in byte_stream {
                 match chunk {
                     Ok(bytes) => {
                         if let Ok(text) = String::from_utf8(bytes.to_vec()) {

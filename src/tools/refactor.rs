@@ -1,5 +1,6 @@
 ﻿use super::base::{Tool, ToolResult};
 use crate::llm::ollama::OllamaProvider;
+use crate::llm::provider::LlmProvider;
 use crate::Result;
 use async_trait::async_trait;
 use serde_json::{json, Value};

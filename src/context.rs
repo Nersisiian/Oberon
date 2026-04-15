@@ -7,8 +7,6 @@ use crate::llm::provider::LlmProvider;
 use crate::safety::sandbox::Sandbox;
 use crate::tools::registry::ToolRegistry;
 
-/// Central context holding all shared resources.
-/// This reduces coupling by passing a single object instead of multiple parameters.
 #[derive(Clone)]
 pub struct Context {
     pub config: Arc<Config>,
@@ -19,17 +17,17 @@ pub struct Context {
 
 impl Context {
     pub fn new(config: Config, llm: Arc<dyn LlmProvider>) -> Self {
+        let config = Arc::new(config);
         let tools = Arc::new(ToolRegistry::new());
         let sandbox = Arc::new(Sandbox::new(config.clone()));
         Self {
-            config: Arc::new(config),
+            config,
             llm,
             tools,
             sandbox,
         }
     }
 
-    /// Create a context with default configuration (useful for tests)
     #[cfg(test)]
     pub fn test_context() -> Self {
         use crate::llm::ollama::OllamaProvider;

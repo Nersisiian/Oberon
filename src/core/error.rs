@@ -8,6 +8,9 @@ pub enum OberonError {
     #[error("JSON error: {0}")]
     Json(#[from] serde_json::Error),
 
+    #[error("TOML error: {0}")]
+    Toml(#[from] toml::de::Error),
+
     #[error("LLM error: {0}")]
     Llm(String),
 

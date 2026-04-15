@@ -1,5 +1,6 @@
 ﻿use colored::*;
 use std::fmt::Display;
+use std::io::Write;
 
 pub fn success<T: Display>(msg: T) {
     println!("{} {}", "✓".green().bold(), msg);
