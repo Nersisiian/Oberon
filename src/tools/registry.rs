@@ -10,6 +10,12 @@ pub struct ToolRegistry {
     tools: Arc<DashMap<String, Arc<dyn Tool>>>,
 }
 
+impl Default for ToolRegistry {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl ToolRegistry {
     pub fn new() -> Self {
         let registry = Self {

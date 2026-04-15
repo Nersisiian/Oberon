@@ -7,6 +7,12 @@ use walkdir::WalkDir;
 
 pub struct SearchCodeTool;
 
+impl Default for SearchCodeTool {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl SearchCodeTool {
     pub fn new() -> Self {
         Self

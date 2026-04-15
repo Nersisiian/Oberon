@@ -6,6 +6,12 @@ use tokio::fs;
 
 pub struct FileReadTool;
 
+impl Default for FileReadTool {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl FileReadTool {
     pub fn new() -> Self {
         Self

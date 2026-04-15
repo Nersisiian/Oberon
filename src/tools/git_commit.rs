@@ -7,6 +7,12 @@ use tracing::debug;
 
 pub struct GitCommitTool;
 
+impl Default for GitCommitTool {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl GitCommitTool {
     pub fn new() -> Self {
         Self

@@ -17,8 +17,15 @@ pub struct OllamaProvider {
     model: String,
     temperature: f32,
     max_tokens: u32,
+    #[allow(dead_code)]
     timeout: Duration,
     client: reqwest::Client,
+}
+
+impl Default for OllamaProvider {
+    fn default() -> Self {
+        Self::new()
+    }
 }
 
 impl OllamaProvider {

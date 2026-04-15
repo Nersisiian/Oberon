@@ -11,6 +11,12 @@ pub struct RefactorTool {
     llm: Arc<OllamaProvider>,
 }
 
+impl Default for RefactorTool {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl RefactorTool {
     pub fn new() -> Self {
         Self {

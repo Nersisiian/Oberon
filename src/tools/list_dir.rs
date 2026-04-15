@@ -6,6 +6,12 @@ use tokio::fs;
 
 pub struct ListDirTool;
 
+impl Default for ListDirTool {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl ListDirTool {
     pub fn new() -> Self {
         Self
