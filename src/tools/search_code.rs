@@ -36,8 +36,10 @@ impl Tool for SearchCodeTool {
     async fn execute(&self, input: Value) -> Result<ToolResult> {
         let pattern = input["pattern"].as_str().unwrap();
         let path = input["path"].as_str().unwrap();
-        let re = Regex::new(pattern)
-            .map_err(|e| crate::OberonError::Tool { tool: self.name().to_string(), message: format!("Invalid regex: {}", e) })?;
+        let re = Regex::new(pattern).map_err(|e| crate::OberonError::Tool {
+            tool: self.name().to_string(),
+            message: format!("Invalid regex: {}", e),
+        })?;
 
         let mut matches = vec![];
         for entry in WalkDir::new(path).into_iter().filter_map(|e| e.ok()) {
